@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Loans{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">💳 Loan List</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Customer</th>
+            <th>Loan Amount</th>
+            <th>Interest Rate (%)</th>
+            <th>Repayment</th>
+            <th>Balance</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for loan in loans %}
+        <tr>
+            <td>{{ loan.customer.name }}</td>
+            <td>₹{{ loan.loan_amount }}</td>
+            <td>{{ loan.interest_rate }}</td>
+            <td>₹{{ loan.repayment }}</td>
+            <td>₹{{ loan.balance }}</td>
+            <td>{{ loan.date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">No loans available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'add_loan' %}" class="btn btn-primary">➕ Add Loan</a>
+
+{% endblock %}

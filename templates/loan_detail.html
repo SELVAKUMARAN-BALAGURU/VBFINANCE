@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Loan Details - {{ customer.name }}{% endblock %}
+{% block content %}
+<h2>Loan Details for {{ customer.name }}</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Loan Amount</th>
+      <th>Repaid</th>
+      <th>Balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for loan in loans %}
+    <tr>
+      <td>{{ loan.loan_amount }}</td>
+      <td>{{ loan.repayment }}</td>
+      <td>{{ loan.balance }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h4>Total Repaid: ₹{{ total_repayment }}</h4>
+<h4>Total Interest Collected: ₹{{ total_interest }}</h4>
+
+<a href="{% url 'homepage' %}" class="btn btn-secondary mt-3">⬅ Back to Home</a>
+{% endblock %}

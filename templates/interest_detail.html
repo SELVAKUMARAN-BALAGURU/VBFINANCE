@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Interest Payments - {{ customer.name }}{% endblock %}
+{% block content %}
+<h2>Interest Payments - {{ customer.name }}</h2>
+
+{% if interest_payments %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Loan ID</th>
+                <th>Date</th>
+                <th>Interest Amount Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for interest in interest_payments %}
+            <tr>
+                <td>{{ interest.loan.id }}</td>
+                <td>{{ interest.date }}</td>
+                <td>₹{{ interest.interest_amount_paid }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No interest payments found.</p>
+{% endif %}
+{% endblock %}

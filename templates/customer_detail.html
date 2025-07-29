@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Customer: {{ customer.name }}{% endblock %}
+{% block content %}
+<h2>Customer Details</h2>
+<div class="card mb-4">
+    <div class="card-body">
+        <h5 class="card-title">{{ customer.name }}</h5>
+        <p><strong>Phone:</strong> {{ customer.phone_number }}</p>
+        <p><strong>Address:</strong> {{ customer.address }}</p>
+    </div>
+</div>
+
+<h3>Loans</h3>
+{% if loans %}
+    <ul class="list-group">
+        {% for loan in loans %}
+            <li class="list-group-item d-flex justify-content-between">
+                Loan Amount: ₹{{ loan.loan_amount }} |
+                Repaid: ₹{{ loan.repayment }} |
+                Balance: ₹{{ loan.balance }}
+                <a class="btn btn-sm btn-outline-primary" href="{% url 'loan_detail' customer.name %}">View Loan</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No loans found for this customer.</p>
+{% endif %}
+{% endblock %}

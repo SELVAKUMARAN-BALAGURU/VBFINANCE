@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Interest Payments{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">💰 Interest Payments</h2>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Customer</th>
+            <th>Loan Amount</th>
+            <th>Interest Paid</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for payment in interest_payments %}
+        <tr>
+            <td>{{ payment.loan.customer.name }}</td>
+            <td>₹{{ payment.loan.loan_amount }}</td>
+            <td>₹{{ payment.interest_amount_paid }}</td>
+            <td>{{ payment.date }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4" class="text-center">No interest payments yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'add_interest' %}" class="btn btn-warning">➕ Add Interest</a>
+
+{% endblock %}

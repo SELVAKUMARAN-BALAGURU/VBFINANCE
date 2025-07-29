@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Repayment - {{ customer.name }}{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">💰 Make Repayment for {{ customer.name }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Repayment</button>
+    <a href="{% url 'homepage' %}" class="btn btn-secondary">Cancel</a>
+</form>
+
+{% endblock %}

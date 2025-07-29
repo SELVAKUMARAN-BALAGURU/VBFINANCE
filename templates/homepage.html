@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}VBFinance - Home{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">🏠 Customer List</h2>
+
+<a href="{% url 'add_customer' %}" class="btn btn-primary mb-3">➕ Create New Customer</a>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.phone_number }}</td>
+            <td>
+                <a href="{% url 'customer_detail' customer.name %}" class="btn btn-primary btn-sm">Details</a>
+                <a href="{% url 'loan_detail' customer.name %}" class="btn btn-success btn-sm">Loan</a>
+                <a href="{% url 'interest_detail' customer.name %}" class="btn btn-info btn-sm">Interest</a>
+                <a href="{% url 'repayment' customer.name %}" class="btn btn-warning btn-sm">Repayment</a>
+                <a href="{% url 'add_interest' %}?customer={{ customer.name }}" class="btn btn-danger btn-sm">Add Interest</a>
+                <a href="{% url 'add_loan' %}" class="btn btn-primary btn-sm">Add Loan</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
