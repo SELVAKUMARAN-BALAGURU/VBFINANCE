@@ -102,7 +102,7 @@ from .forms import RepaymentForm
 
 def repayment_view(request, customer_name):
     customer = get_object_or_404(Customer, name=customer_name)
-    loan = Loan.objects.filter(customer=customer)
+    loan = Loan.objects.filter(customer=customer).order_by('-id').first()
 
 
     if request.method == 'POST':
