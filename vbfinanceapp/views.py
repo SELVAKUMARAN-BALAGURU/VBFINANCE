@@ -102,7 +102,8 @@ from .forms import RepaymentForm
 
 def repayment_view(request, customer_name):
     customer = get_object_or_404(Customer, name=customer_name)
-    loan = get_object_or_404(Loan, customer=customer)
+    loan = Loan.objects.filter(customer=customer)
+
 
     if request.method == 'POST':
         form = RepaymentForm(request.POST)
@@ -115,6 +116,6 @@ def repayment_view(request, customer_name):
     else:
         form = RepaymentForm()
 
-    return render(request, 'repayment.html', {'form': form, 'customer': customer})
+    return render(request, 'repayment.html', {'form': form, 'customer': customer,'loan':loan})
 
   
